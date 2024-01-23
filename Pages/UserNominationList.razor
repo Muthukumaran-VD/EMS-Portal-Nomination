@@ -1,0 +1,41 @@
+﻿@page "/usernominationlist"
+@using EMS_Portal_Nomination.Data
+@inject UserNominationFormService userNominationFormService
+
+<NavLink class="nav-link" href="nominationbyuser">
+    <span class="oi oi-list-rich" aria-hidden="true"></span> Nomination Form
+</NavLink>
+
+<h3>UserNominationList</h3>
+
+if(UserObj is null)
+{
+<p><em>Loading..........!</em></p>
+}
+else
+{
+<table>
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                EmployeeId
+            </th>
+            <th>
+                EmailId
+            </th>
+        </tr>
+    </thead>
+</table>
+}
+
+@code {
+    List<UserNominationForm> UserObj;
+
+    protected override async Task OnInitializedAsync()
+    {
+        UserObj = await Task.Run(() => userNominationFormService.GetAllUserNominationFormData());
+    }
+}   
