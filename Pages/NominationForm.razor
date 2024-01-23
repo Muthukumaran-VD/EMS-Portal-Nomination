@@ -1,0 +1,89 @@
+﻿@page "/nominationbyuser"
+@inherits NominationFormBase
+
+<!-- Include Bootstrap CSS (You can link to it in your _Imports.razor or in your HTML file) -->
+<!-- Example: <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" /> -->
+
+<h3 class="mt-4">Nomination By User</h3>
+
+<EditForm Model="Employee" OnValidSubmit="AddNomination">
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" id="name" @bind="Employee.Name" />
+    </div>
+
+    <div class="form-group">
+        <label for="employeeId">Employee ID:</label>
+        <input type="text" class="form-control" id="employeeId" @bind="Employee.EmployeeId" />
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email ID:</label>
+        <input type="email" class="form-control" id="email" @bind="Employee.EmailId" />
+    </div>
+
+    <div class="form-group">
+        <label for="projectsWorked">Number of Projects Worked:</label>
+        <input type="number" class="form-control" id="projectsWorked" @bind="Employee.ProjectsWorked" />
+    </div>
+
+    <div class="form-group">
+        <label for="technologiesWorked">Number of Technologies Worked:</label>
+        <input type="number" class="form-control" id="technologiesWorked" @bind="Employee.TechnologiesWorked" />
+    </div>
+
+    <div class="form-group">
+        <label for="outsideParticipation">Outside Participation:</label>
+        <textarea class="form-control" id="outsideParticipation" @bind="Employee.OutsideParticipation"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="employeeOfMonth">Employee of the Month Award:</label>
+        <input type="checkbox" class="form-check-input" id="employeeOfMonth" @bind="Employee.EmployeeOfMonthAwardReceived" />
+        @if (Employee.EmployeeOfMonthAwardReceived)
+        {
+            <div class="form-group">
+                <label for="monthsAwardReceived">Month(s) Award Received:</label>
+                <input type="text" class="form-control" id="monthsAwardReceived" @bind="Employee.MonthsAwardReceived" />
+            </div>
+        }
+    </div>
+
+    <div class="form-group">
+        <label for="otherProjects">Other Projects:</label>
+        <textarea class="form-control" id="otherProjects" @bind="Employee.OtherProjects"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="highestWorkingHours">Highest Working Hours (Week and Month):</label>
+        <input type="text" class="form-control" id="highestWorkingHours" @bind="Employee.HighestWorkingHours" />
+    </div>
+
+    <div class="form-group">
+        <label for="awardNomination">Award Nomination:</label>
+        <select class="form-control" id="awardNomination" @bind="Employee.AwardNomination">
+            <option value="Best Coder">Best Coder</option>
+            <option value="All Rounder">All Rounder</option>
+            <option value="Technical Master">Technical Master</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="remarks">Remarks:</label>
+        <textarea class="form-control" id="remarks" @bind="Employee.Remarks"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="role">Role:</label>
+        <input type="text" class="form-control" id="role" @bind="Employee.Role" />
+    </div>
+
+    <div class="form-group">
+        <label for="reportingTo">Reporting To:</label>
+        <input type="text" class="form-control" id="reportingTo" @bind="Employee.ReportingTo" />
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</EditForm>

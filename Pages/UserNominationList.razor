@@ -1,41 +1,50 @@
 ﻿@page "/usernominationlist"
-@using EMS_Portal_Nomination.Data
-@inject UserNominationFormService userNominationFormService
+@inherits UserNominationListBase
 
-<NavLink class="nav-link" href="nominationbyuser">
-    <span class="oi oi-list-rich" aria-hidden="true"></span> Nomination Form
+<!-- Include Bootstrap CSS (You can link to it in your _Imports.razor or in your HTML file) -->
+<!-- Example: <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" /> -->
+
+<NavLink href="nominationbyuser" class="nav-link">
+    <button class="btn btn-primary"><span aria-hidden="true">Nomination Form</span></button>
 </NavLink>
 
-<h3>UserNominationList</h3>
+<div class="container mt-4">
+    <h3>User Nomination List</h3>
 
-if(UserObj is null)
-{
-<p><em>Loading..........!</em></p>
-}
-else
-{
-<table>
-    <thead>
-        <tr>
-            <th>
-                Name
-            </th>
-            <th>
-                EmployeeId
-            </th>
-            <th>
-                EmailId
-            </th>
-        </tr>
-    </thead>
-</table>
-}
-
-@code {
-    List<UserNominationForm> UserObj;
-
-    protected override async Task OnInitializedAsync()
+    @if (UserObj is null)
     {
-        UserObj = await Task.Run(() => userNominationFormService.GetAllUserNominationFormData());
+        <p><em>Loading..........!</em></p>
     }
-}   
+    else
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Employee ID</th>
+                    <th>Email ID</th>
+                    <th>Reporting To</th>
+                    <th colspan="2">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in UserObj)
+                {
+                    <tr>
+                        <td>@user.Name</td>
+                        <td>@user.EmployeeId</td>
+                        <td>@user.EmailId</td>
+                        <td>@user.ReportingTo</td>
+                        <td>
+                            <button class="btn btn-primary">Edit</button>
+                        </td>
+                        <td>
+                            <NavLink href="usernominationview" class="btn btn-primary">View</NavLink>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+

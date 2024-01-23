@@ -1,7 +1,11 @@
-﻿namespace EMS_Portal_Nomination.Data
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace EMS_Portal_Nomination.Models
 {
-    public class UserNominationForm
+    public class UserNomination
     {
+        [Key]
+        public int Id { get; set; }
         public string Name { get; set; }
         public string EmployeeId { get; set; }
         public string EmailId { get; set; }

@@ -1,5 +1,9 @@
 using EMS_Portal_Nomination.Data;
+using EMS_Portal_Nomination.Models;
+using EMS_Portal_Nomination.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,11 +11,29 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
-builder.Services.AddTransient<UserNominationFormService>();
+builder.Services.AddTransient<DBService>();
 
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 //Connection to the database
-builder.Services.AddDbContext<EMS_Portal_Nomination.Context.ApplicationDbContext>(item => item.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<DataContext>(item => item.UseSqlServer(connectionString));
+
+// Entity Framework
+
+var optionsBuilder = new DbContextOptionsBuilder<DataContext>();
+
+optionsBuilder.UseSqlServer(connectionString);
+
+// enabling auto migration
+
+using (var context = new DataContext(optionsBuilder.Options))
+
+{
+
+    context.Database.Migrate();
+
+}
 
 
 var app = builder.Build();
