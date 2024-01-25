@@ -26,5 +26,7 @@ namespace EMS_Portal_Nomination.Models
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 
         public virtual DbSet<UserNomination> UserNomination { get; set; }
+
+        public virtual DbSet<Role> Role { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace EMS_Portal_Nomination.Models
         public string MonthsAwardReceived { get; set; }
         public string OtherProjects { get; set; }
         public string HighestWorkingHours { get; set; }
-        public string AwardNomination { get; set; }
+        public string? AwardNomination { get; set; }
         public string Remarks { get; set; }
         public string Role { get; set; }
         public string ReportingTo { get; set; }

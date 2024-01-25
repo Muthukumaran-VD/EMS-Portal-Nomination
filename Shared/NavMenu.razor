@@ -10,25 +10,22 @@
 <div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
     <nav class="flex-column">
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
             <NavLink class="nav-link" href="usernominationlist">
                 <span class="oi oi-list-rich" aria-hidden="true"></span> User Nomination List
             </NavLink>
         </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="addroleform">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> RoleMaster Form
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="addnamebyrole">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> NameAssign Form
+            </NavLink>
+        </div>
+
+       
     </nav>
 </div>
 
@@ -36,6 +33,10 @@
     private bool collapseNavMenu = true;
 
     private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    // Mock user data (replace with actual data from your authentication system)
+    private string UserRoles = "Admin";
+    private string UserName = "John Doe";
 
     private void ToggleNavMenu()
     {

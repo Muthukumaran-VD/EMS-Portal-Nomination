@@ -1,6 +1,64 @@
-﻿@page "/usernominationview"
-<h3>NominationUserView</h3>
-<h1>Hellow</h1>
-@code {
-    
-}
+﻿@page "/usernominationview/{EmailId}"
+@inherits UserNominationViewBase
+
+<div class="container mt-4">
+    @if (UserNominations != null)
+    {
+        @foreach (var item in UserNominations)
+        {
+            <h3 class="text-center mt-4">
+                Nomination User View: @item.EmployeeId
+            </h3>
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="card-title mb-0">Nomination Details</h5>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-3">Name</dt>
+                        <dd class="col-sm-9">@item.Name</dd>
+
+                        <dt class="col-sm-3">Employee ID</dt>
+                        <dd class="col-sm-9">@item.EmployeeId</dd>
+
+                        <dt class="col-sm-3">Email ID</dt>
+                        <dd class="col-sm-9">@item.EmailId</dd>
+
+                        <dt class="col-sm-3">Projects Worked</dt>
+                        <dd class="col-sm-9">@item.ProjectsWorked</dd>
+
+                        <dt class="col-sm-3">Technologies Worked</dt>
+                        <dd class="col-sm-9">@item.TechnologiesWorked</dd>
+
+                        <dt class="col-sm-3">Outside Participation</dt>
+                        <dd class="col-sm-9">@item.OutsideParticipation</dd>
+
+                        <dt class="col-sm-3">Employee of Month Award Received</dt>
+                        <dd class="col-sm-9">@item.EmployeeOfMonthAwardReceived</dd>
+
+                        <dt class="col-sm-3">Months Award Received</dt>
+                        <dd class="col-sm-9">@item.MonthsAwardReceived</dd>
+
+                        <dt class="col-sm-3">Other Projects</dt>
+                        <dd class="col-sm-9">@item.OtherProjects</dd>
+
+                        <dt class="col-sm-3">Highest Working Hours</dt>
+                        <dd class="col-sm-9">@item.HighestWorkingHours</dd>
+
+                        <dt class="col-sm-3">Award Nomination</dt>
+                        <dd class="col-sm-9">@item.AwardNomination</dd>
+
+                        <dt class="col-sm-3">Remarks</dt>
+                        <dd class="col-sm-9">@item.Remarks</dd>
+
+                        <dt class="col-sm-3">Role</dt>
+                        <dd class="col-sm-9">@item.Role</dd>
+
+                        <dt class="col-sm-3">Reporting To</dt>
+                        <dd class="col-sm-9">@item.ReportingTo</dd>
+                    </dl>
+                </div>
+            </div>
+        }
+    }
+</div>

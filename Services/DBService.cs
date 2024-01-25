@@ -18,9 +18,32 @@ namespace EMS_Portal_Nomination.Services
             await db.SaveChangesAsync();
         }
 
+        public async Task AddNewRole(Role Role)
+        {
+            await db.AddAsync(Role);
+            await db.SaveChangesAsync();
+        }
+        public async Task UpdateNewNomination(UserNomination nomination)
+        {
+            var existingNomination = await db.UserNomination.FindAsync(nomination.Id); // Assuming there's an 'Id' property in your UserNomination class
+            if (existingNomination != null)
+            {
+                db.Entry(existingNomination).CurrentValues.SetValues(nomination);
+                await db.SaveChangesAsync();
+            }
+        }
+
         public async Task<List<UserNomination>> GetNominations()
         {
+
             return await db.UserNomination.ToListAsync();
         }
+
+        public async Task<List<UserNomination>> GetNominationsByEmailId(string email)
+        {
+
+            return await db.UserNomination.Where(x=>x.EmailId == email).ToListAsync();
+        }
+
     }
 }

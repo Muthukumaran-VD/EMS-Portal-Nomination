@@ -1,0 +1,18 @@
+﻿@page "/addroleform"
+@inherits MasterDataAddRoletBase
+
+<EditForm Model="Role" OnValidSubmit="AddRole">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <InputText id="name" class="form-control" @bind-Value="Role.Name" />
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</EditForm>
+
+
