@@ -18,6 +18,20 @@ namespace EMS_Portal_Nomination.Services
             await db.SaveChangesAsync();
         }
 
+        public async Task<bool> ValidateLogin(Sign loginData)
+        {
+            // Check if the username and password match in the database
+            bool isValid = await db.Sign.AnyAsync(u => u.UserName == loginData.UserName && u.Password == loginData.Password);
+
+            return isValid;
+        }
+
+        public async Task AddSign(Sign Sign)
+        {
+            await db.AddAsync(Sign);
+            await db.SaveChangesAsync();
+        }
+
         public async Task AddNewRole(Role Role)
         {
             await db.AddAsync(Role);
@@ -42,7 +56,7 @@ namespace EMS_Portal_Nomination.Services
         public async Task<List<UserNomination>> GetNominationsByEmailId(string email)
         {
 
-            return await db.UserNomination.Where(x=>x.EmailId == email).ToListAsync();
+            return await db.UserNomination.Where(x => x.EmailId == email).ToListAsync();
         }
 
     }

@@ -4,10 +4,38 @@
 
 namespace EMS_Portal_Nomination.Migrations
 {
-    public partial class AddUsersNomination : Migration
+    public partial class crudAddmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Role",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Role", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sign",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sign", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "UserNomination",
                 columns: table => new
@@ -20,11 +48,9 @@ namespace EMS_Portal_Nomination.Migrations
                     ProjectsWorked = table.Column<int>(type: "int", nullable: false),
                     TechnologiesWorked = table.Column<int>(type: "int", nullable: false),
                     OutsideParticipation = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EmployeeOfMonthAwardReceived = table.Column<bool>(type: "bit", nullable: false),
-                    MonthsAwardReceived = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     OtherProjects = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     HighestWorkingHours = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AwardNomination = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AwardNomination = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Remarks = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Role = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ReportingTo = table.Column<string>(type: "nvarchar(max)", nullable: false)
@@ -37,6 +63,12 @@ namespace EMS_Portal_Nomination.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Role");
+
+            migrationBuilder.DropTable(
+                name: "Sign");
+
             migrationBuilder.DropTable(
                 name: "UserNomination");
         }

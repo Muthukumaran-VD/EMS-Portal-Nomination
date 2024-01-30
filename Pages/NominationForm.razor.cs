@@ -6,12 +6,13 @@ using Microsoft.AspNetCore.Components;
 
 namespace EMS_Portal_Nomination.Pages
 {
-    public class NominationFormBase : ComponentBase
+    public class NominationFormBase : ComponentBase 
     {
         [Inject]
         public DBService DBService { get; set; }
         public UserNomination Employee { get; set; } = new();
 
+        [Inject]
         public NavigationManager NavigationManager { get; set; }
         protected override async Task OnInitializedAsync()
         {

@@ -28,5 +28,7 @@ namespace EMS_Portal_Nomination.Models
         public virtual DbSet<UserNomination> UserNomination { get; set; }
 
         public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<Sign> Sign { get; set; }
+
     }
 }

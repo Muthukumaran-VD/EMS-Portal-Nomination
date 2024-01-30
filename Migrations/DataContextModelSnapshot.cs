@@ -38,6 +38,31 @@ namespace EMS_Portal_Nomination.Migrations
                     b.ToTable("Role");
                 });
 
+            modelBuilder.Entity("EMS_Portal_Nomination.Models.Sign", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sign");
+                });
+
             modelBuilder.Entity("EMS_Portal_Nomination.Models.UserNomination", b =>
                 {
                     b.Property<int>("Id")
@@ -57,14 +82,7 @@ namespace EMS_Portal_Nomination.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("EmployeeOfMonthAwardReceived")
-                        .HasColumnType("bit");
-
                     b.Property<string>("HighestWorkingHours")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MonthsAwardReceived")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
