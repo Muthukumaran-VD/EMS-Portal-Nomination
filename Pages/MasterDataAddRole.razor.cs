@@ -1,5 +1,6 @@
 ﻿using EMS_Portal_Nomination.Models;
 using EMS_Portal_Nomination.Services;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Components;
 
 namespace EMS_Portal_Nomination.Pages
@@ -8,11 +9,19 @@ namespace EMS_Portal_Nomination.Pages
     {
         [Inject]
         public DBService DBService { get; set; }
+
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
         public Role Role { get; set; } = new();
         protected async Task AddRole()
         {
-            await DBService.AddNewRole(Role);
+            if (DBService != null && Role != null)
+            {
+                await DBService.AddNewRole(Role);
+                NavigationManager.NavigateTo("usernominationlist");
+            }
         }
+
     }
 }
 

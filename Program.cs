@@ -1,43 +1,26 @@
+using Blazored.SessionStorage;
 using EMS_Portal_Nomination.Data;
-using EMS_Portal_Nomination.Models;
 using EMS_Portal_Nomination.Services;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using System.Configuration;
+using Microsoft.AspNetCore.Identity;
+using EMS_Portal_Nomination;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<IdentityContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<IdentityContext>();
 
 // Add services to the container
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
-builder.Services.AddTransient<DBService>();
-
-
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-
-//Connection to the database
-builder.Services.AddDbContext<DataContext>(item => item.UseSqlServer(connectionString));
-
-// Entity Framework
-
-var optionsBuilder = new DbContextOptionsBuilder<DataContext>();
-
-optionsBuilder.UseSqlServer(connectionString);
-
-// enabling auto migration
-
-using (var context = new DataContext(optionsBuilder.Options))
-
-{
-
-    context.Database.Migrate();
-
-}
-
+builder.Services.AddScoped<DBService>();
+builder.Services.AddScoped<SessionState>();
+builder.Services.AddBlazoredSessionStorage();
 
 var app = builder.Build();
-
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -52,8 +35,11 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication(); ;
+app.UseAuthorization();
 app.MapBlazorHub();
+app.MapRazorPages();
+
 app.MapFallbackToPage("/_Host");
 
 app.Run();

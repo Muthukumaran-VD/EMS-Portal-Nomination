@@ -15,49 +15,49 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Name:</label>
-                                    <input type="text" class="form-control" id="name" @bind="@Employee.Name" />
+                                            <input type="text" class="form-control" id="name" @bind="@Employee.Name" readonly required/>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="employeeId">Employee ID:</label>
-                                    <input type="text" class="form-control" id="employeeId" @bind="@Employee.EmployeeId" />
+                                                    <input type="text" class="form-control" id="employeeId" @bind="@Employee.EmployeeId" readonly required/>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="email">Email ID:</label>
-                                    <input type="email" class="form-control" id="email" @bind="@Employee.EmailId" />
+                                    <input type="email" class="form-control" id="email" @bind="@Employee.EmailId" readonly required/>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="projectsWorked">Number of Projects Worked:</label>
-                                    <input type="number" class="form-control" id="projectsWorked" @bind="@Employee.ProjectsWorked" />
+                                    <input type="number" class="form-control" id="projectsWorked" @bind="@Employee.ProjectsWorked" required/>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="technologiesWorked">Number of Technologies Worked:</label>
-                                    <input type="number" class="form-control" id="technologiesWorked" @bind="@Employee.TechnologiesWorked" />
+                                            <input type="number" class="form-control" id="technologiesWorked" @bind="@Employee.TechnologiesWorked" required/>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="outsideParticipation">Outside Participation:</label>
-                                    <textarea class="form-control" id="outsideParticipation" @bind="@Employee.OutsideParticipation"></textarea>
+                                            <input class="form-control" id="outsideParticipation" @bind="@Employee.OutsideParticipation" required />
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="otherProjects">Other Projects:</label>
-                                    <textarea class="form-control" id="otherProjects" @bind="@Employee.OtherProjects"></textarea>
+                                            <input class="form-control" id="otherProjects" @bind="@Employee.OtherProjects" required/>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="highestWorkingHours">Highest Working Hours (Week and Month):</label>
-                                    <input type="text" class="form-control" id="highestWorkingHours" @bind="@Employee.HighestWorkingHours" />
+                                            <input type="text" class="form-control" id="highestWorkingHours" @bind="@Employee.HighestWorkingHours" required/>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="awardNomination">Award Nomination:</label>
-                                    <select class="form-control" id="awardNomination" @bind="@Employee.AwardNomination">
+                                                    <select class="form-control form-select" id="awardNomination" @bind="@Employee.AwardNomination" required >
                                         <option value="Best Coder">Best Coder</option>
                                         <option value="All Rounder">All Rounder</option>
                                         <option value="Technical Master">Technical Master</option>
@@ -66,17 +66,17 @@
 
                                 <div class="form-group">
                                     <label for="remarks">Remarks:</label>
-                                    <textarea class="form-control" id="remarks" @bind="@Employee.Remarks"></textarea>
+                                            <input class="form-control" id="remarks" @bind="@Employee.Remarks" required />
                                 </div>
 
                                 <div class="form-group">
                                     <label for="role">Role:</label>
-                                    <input type="text" class="form-control" id="role" @bind="@Employee.Role" />
+                                                    <input type="text" class="form-control" id="role" @bind="@Employee.Role" readonly required />
                                 </div>
 
                                 <div class="form-group">
                                     <label for="reportingTo">Reporting To:</label>
-                                    <input type="text" class="form-control" id="reportingTo" @bind="@Employee.ReportingTo" />
+                                            <input type="text" class="form-control" id="reportingTo" @bind="@Employee.ReportingTo" required/>
                                 </div>
                             </div>
                         </div>

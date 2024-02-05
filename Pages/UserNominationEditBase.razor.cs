@@ -19,6 +19,9 @@ namespace EMS_Portal_Nomination.Pages
         [Parameter]
         public UserNomination Employee { get; set; } = new UserNomination();
 
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
+
         protected override async Task OnParametersSetAsync()
         {
             var emailId = EmailId ?? "";
@@ -34,6 +37,9 @@ namespace EMS_Portal_Nomination.Pages
         {
             Debug.WriteLine("**" + employee.Name);
             await DBService.UpdateNewNomination(employee);
+            NavigationManager.NavigateTo("usernominationlist");
+
+
         }
 
     }

@@ -7,5 +7,10 @@ namespace EMS_Portal_Nomination.Models
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
+
+        public static implicit operator Role(List<Role> v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
